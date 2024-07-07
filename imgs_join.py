@@ -5,6 +5,9 @@ import numpy as np
 
 def gen_merge_pages():
     basepath = 'download'
+    out_path = 'out_images'
+    for filename in os.listdir(out_path):
+        os.remove(os.path.join(out_path, filename))
     files = [os.path.join(basepath, v) for v in os.listdir(basepath)]
     img_h, img_w = 370, 265
     space = 2
@@ -35,7 +38,6 @@ def gen_merge_pages():
         result_pages.append(page_img)
 
     for idx, page_img in enumerate(result_pages):
-        out_path = 'out_images'
         save_file_name = os.path.join(out_path, f'{idx}.png')
         cv2.imwrite(save_file_name, page_img)
         # cv2.imshow(f'{idx}', img)

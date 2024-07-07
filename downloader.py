@@ -16,7 +16,7 @@ cards_group_info = {}
 
 # In[3]:
 playwright = sync_playwright().start()
-browser = playwright.chromium.launch(headless=False, channel='chrome')
+browser = playwright.chromium.launch(headless=False, channel='msedge')
 context = browser.new_context(viewport={'width': 1920, 'height': 1024})
 page = context.new_page()
 page.goto(url)
@@ -107,3 +107,6 @@ draw_marker(base_dir)  # 标记备牌
 
 # 生成合并图，目前是3*3第页布局
 gen_merge_pages()
+
+for file_name in os.listdir(base_dir):
+    os.remove(path.join(base_dir, file_name))
