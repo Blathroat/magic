@@ -10,7 +10,7 @@ from imgs_join import gen_merge_pages
 
 # In[2]:
 
-url = 'https://www.iyingdi.com/share/deck/deck.html?game=magic&id=973958&lang=SC'
+url = 'https://www.iyingdi.com/web/tools/mtg/userdecks/deckdetail/1178020'
 session = requests.session()
 cards_group_info = {}
 
@@ -23,7 +23,7 @@ page.goto(url)
 
 # %% cards info
 # 卡组名称
-query = page.query_selector('.formatName')
+query = page.query_selector('.format-name')
 card_group_name = ' '.join([query.query_selector('.format').inner_text(), query.query_selector('.name').inner_text()])
 cards_group_info.setdefault('name', card_group_name)
 del card_group_name, query
@@ -40,7 +40,7 @@ del group_img_url, page1
 
 # 卡分类
 all_cards = []  # 全部卡的信息
-query_type_list = page.query_selector_all('.cardList .cardType')
+query_type_list = page.query_selector_all('.card-list .card-type')
 print(query_type_list)
 for card_type in query_type_list:
     card_type_title = card_type.query_selector('.title').inner_text()
